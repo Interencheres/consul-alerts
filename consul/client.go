@@ -8,8 +8,8 @@ import (
 
 	"encoding/json"
 
-	log "github.com/AcalephStorage/consul-alerts/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	consulapi "github.com/AcalephStorage/consul-alerts/Godeps/_workspace/src/github.com/hashicorp/consul/api"
+	log "github.com/Sirupsen/logrus"
+	consulapi "github.com/hashicorp/consul/api"
 )
 
 const (
@@ -160,6 +160,10 @@ func (c *ConsulAlertClient) LoadConfig() {
 			case "consul-alerts/config/notifiers/hipchat/base-url":
 				valErr = loadCustomValue(&config.Notifiers.HipChat.BaseURL, val, ConfigTypeString)
 
+		  // OpsGenie notifier config
+		case "consul-alerts/config/notifiers/opsgenie/api-key":
+				valErr = loadCustomValue(&config.Notifiers.OpsGenie.ApiKey, val, ConfigTypeString)
+
 			}
 
 			if valErr != nil {
@@ -299,6 +303,10 @@ func (c *ConsulAlertClient) PagerDutyConfig() *PagerDutyNotifierConfig {
 
 func (c *ConsulAlertClient) HipChatConfig() *HipChatNotifierConfig {
 	return c.config.Notifiers.HipChat
+}
+
+func (c *ConsulAlertClient) OpsGenieConfig() *OpsGenieNotifierConfig {
+	return c.config.Notifiers.OpsGenie
 }
 
 func (c *ConsulAlertClient) registerHealthCheck(key string, health *Check) {

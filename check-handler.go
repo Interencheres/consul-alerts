@@ -8,10 +8,10 @@ import (
 	"net/http"
 	"os/exec"
 
-	"github.com/AcalephStorage/consul-alerts/consul"
-	"github.com/AcalephStorage/consul-alerts/notifier"
+	"github.com/interencheres/consul-alerts/consul"
+	"github.com/interencheres/consul-alerts/notifier"
 
-	log "github.com/AcalephStorage/consul-alerts/Godeps/_workspace/src/github.com/Sirupsen/logrus"
+	log "github.com/Sirupsen/logrus"
 )
 
 var checksChannel = make(chan []consul.Check, 1)

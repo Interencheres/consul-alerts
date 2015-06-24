@@ -10,12 +10,12 @@ import (
 	"net/http"
 	"os/signal"
 
-	"github.com/AcalephStorage/consul-alerts/consul"
-	"github.com/AcalephStorage/consul-alerts/notifier"
+	"github.com/interencheres/consul-alerts/consul"
+	"github.com/interencheres/consul-alerts/notifier"
 
-	log "github.com/AcalephStorage/consul-alerts/Godeps/_workspace/src/github.com/Sirupsen/logrus"
-	"github.com/AcalephStorage/consul-alerts/Godeps/_workspace/src/github.com/darkcrux/consul-skipper"
-	"github.com/AcalephStorage/consul-alerts/Godeps/_workspace/src/github.com/docopt/docopt-go"
+	log "github.com/Sirupsen/logrus"
+	"github.com/darkcrux/consul-skipper"
+	"github.com/docopt/docopt-go"
 )
 
 const version = "Consul Alerts 0.3.0"
@@ -222,9 +222,8 @@ func builtinNotifiers() []notifier.Notifier {
 	}
 	if opsgenieConfig.Enabled {
 		opsgenieNotifier := &notifier.OpsGenieNotifier{
-			ApiKey:     opsgenieConfig.ApiKey,
-			User:       opsgenieConfig.User,
-			ClientUrl:  opsgenieConfig.ClientUrl,
+			ClusterName: opsgenieConfig.ClusterName,
+			ApiKey:      opsgenieConfig.ApiKey,
 		}
 		notifiers = append(notifiers, opsgenieNotifier)
 	}
