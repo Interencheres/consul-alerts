@@ -160,8 +160,12 @@ func (c *ConsulAlertClient) LoadConfig() {
 			case "consul-alerts/config/notifiers/hipchat/base-url":
 				valErr = loadCustomValue(&config.Notifiers.HipChat.BaseURL, val, ConfigTypeString)
 
-		  // OpsGenie notifier config
-		case "consul-alerts/config/notifiers/opsgenie/api-key":
+			// OpsGenie notifier config
+			case "consul-alerts/config/notifiers/opsgenie/enabled":
+				valErr = loadCustomValue(&config.Notifiers.OpsGenie.Enabled, val, ConfigTypeBool)
+			case "consul-alerts/config/notifiers/opsgenie/cluster-name":
+				valErr = loadCustomValue(&config.Notifiers.OpsGenie.ClusterName, val, ConfigTypeString)
+			case "consul-alerts/config/notifiers/opsgenie/api-key":
 				valErr = loadCustomValue(&config.Notifiers.OpsGenie.ApiKey, val, ConfigTypeString)
 
 			}
