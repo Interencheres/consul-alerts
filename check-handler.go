@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"os/exec"
 
-	"github.com/interencheres/consul-alerts/consul"
-	"github.com/interencheres/consul-alerts/notifier"
+	"consul-alerts/consul"
+	"consul-alerts/notifier"
 
 	log "github.com/Sirupsen/logrus"
 )

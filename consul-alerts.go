@@ -10,8 +10,8 @@ import (
 	"net/http"
 	"os/signal"
 
-	"github.com/interencheres/consul-alerts/consul"
-	"github.com/interencheres/consul-alerts/notifier"
+	"consul-alerts/consul"
+	"consul-alerts/notifier"
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/darkcrux/consul-skipper"
