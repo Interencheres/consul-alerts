@@ -17,9 +17,7 @@ type OpsGenieNotifier struct {
 func (opsgenie *OpsGenieNotifier) Notify(messages Messages) bool {
 
 	overallStatus, pass, warn, fail := messages.Summary()
-	var title string
-	content := fmt.Sprintf(header, opsgenie.ClusterName, overallStatus, fail, warn, pass)
-
+	
 	client := new(ogcli.OpsGenieClient)
 	client.SetApiKey(opsgenie.ApiKey)
 
@@ -31,7 +29,8 @@ func (opsgenie *OpsGenieNotifier) Notify(messages Messages) bool {
 	}
 
 	for _, message := range messages {
-		title += fmt.Sprintf("\n%s:%s:%s is %s.", message.Node, message.Service, message.Check, message.Status)
+		title := fmt.Sprintf("\n%s:%s:%s is %s.", message.Node, message.Service, message.Check, message.Status)
+		content := fmt.Sprintf(header, opsgenie.ClusterName, overallStatus, fail, warn, pass)
 		content += fmt.Sprintf("\n%s:%s:%s is %s.", message.Node, message.Service, message.Check, message.Status)
 		content += fmt.Sprintf("\n%s", message.Output)
 
